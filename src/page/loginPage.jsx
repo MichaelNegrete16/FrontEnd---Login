@@ -49,7 +49,8 @@ const LoginPage = () => {
     // TODO: Hacer una autenticacion
     useEffect(() => {
         if(errorMessage !== undefined){
-            Swal.fire('Error en la autenticacion', errorMessage, 'error')
+            // console.log(errorMessage.msg);
+            Swal.fire('Error en la autenticacion', 'Verifique que los datos esten correctos', 'error')
         }
     }, [errorMessage])
 
