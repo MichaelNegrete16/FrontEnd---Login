@@ -4,7 +4,7 @@ export const loginSlice = createSlice({
     name: 'LOGIN',
     initialState: {
         // El status para saber si esta o no autenticada
-        status: 'checking',
+        status: 'not-authenticated',
         user: {},
         errorMessage: undefined
     },
