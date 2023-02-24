@@ -23,13 +23,15 @@ const registerFormField = {
 
 const LoginPage = () => {
 
+    const {startLogin,startRegistro,errorMessage} = useLoginStore()
+
     const {loginEmail, loginPassword, onInputChange: onLoginInputChange}  = useForm(loginFormField)
     const {registerName, registerEmail, registerPassword, registerPassword2, onInputChange: onRegisterInputChange} = useForm(registerFormField)
 
     const loginSubmit = e => {
         e.preventDefault()
         // TODO: Mandar los datos al login
-        console.log(e);
+        startLogin({email: loginEmail, password: loginPassword})
     }
 
     const registerSubnmit = e => {
@@ -41,10 +43,15 @@ const LoginPage = () => {
         }
 
         // TODO: Mandar los datos a la base de datos del registro
-
+        startRegistro({name:registerName, email:registerEmail, password:registerPassword})
     }
 
     // TODO: Hacer una autenticacion
+    useEffect(() => {
+        if(errorMessage !== undefined){
+            Swal.fire('Error en la autenticacion', errorMessage, 'error')
+        }
+    }, [errorMessage])
 
     return (
         <div>
