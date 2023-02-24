@@ -44,7 +44,25 @@ export const useLoginStore = () => {
         }
     }
 
+    // saber si hay un token para darle uno nuevo y reingresar al usuario
+    const checkAuthToken = async () =>{
+        const token = localStorage.getItem('token')
+        if(!token) return dispatch(onLogout())
+
+        try {
+            const {data} = await loginApi.get('/renew')
+            localStorage.setItem('token', data.token)
+            dispatch(onLogin({name: data.name, uid: data.uid}))
+        } catch (error) {
+            // Limpiart localStorage
+            localStorage.clear()
+            dispatch(onLogout())
+        }
+
+    }
+
     const startLogout = () => {
+        localStorage.clear()
         dispatch(onLogout())
     }
 
@@ -57,7 +75,8 @@ export const useLoginStore = () => {
         // Metodos
         startLogin,
         startRegistro,
-        startLogout
+        startLogout,
+        checkAuthToken
     }
 
 }

@@ -11,10 +11,10 @@ import { useLoginStore } from "../hooks/useLoginStore";
 const RouterApp = () =>{ 
 
     // TODO: Conocer el estado de sesion
-    const {status} = useLoginStore()
+    const {status,checkAuthToken} = useLoginStore()
     // TODO: Saber si existe un token vigente
     useEffect(() => {
-
+        checkAuthToken()
     },[])
 
     if(status === 'checking'){

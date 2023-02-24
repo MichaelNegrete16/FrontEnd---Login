@@ -1,0 +1,54 @@
+
+.container{
+    margin-top: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1{
+    text-align: center;
+}
+
+.containerLogin{
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 10px;
+    width: 400px;
+    padding: 50px;
+    height: 280px;
+}
+
+.containerLogin input {
+    border-radius: 5px;
+    border: 1px solid ;
+    width: 300px;
+    padding: 7px;
+    margin: 5px;
+}
+
+.btnSubmit input{
+    transition: 0.15s;
+    cursor: pointer;
+}
+
+
+.btnSubmit input:hover{
+    background-color: aquamarine;
+}
+
+.containerRegistro{
+    background-color: aquamarine;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 10px;
+    width: 400px;
+    height: 280px;
+    padding: 50px;
+}
+
+.containerRegistro input{
+    border-radius: 5px;
+    border: 1px solid ;
+    width: 300px;
+    padding: 7px;
+    margin: 5px;
+}

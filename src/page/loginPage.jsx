@@ -4,7 +4,7 @@ import { useForm } from "../hooks/useform"
 import { useLoginStore } from "../hooks/useLoginStore"
 
 // Hoja de estilos
-
+import '../styles/loginStyles.css'
 // Alertas
 import Swal from "sweetalert2"
 
@@ -55,31 +55,32 @@ const LoginPage = () => {
     }, [errorMessage])
 
     return (
-        <div>
-            <div>
+        <div className="container">
+
+            <div className="containerLogin">
                 <h1>Login</h1>
                 <form onSubmit={loginSubmit}>
-                    <div>
+                    <div className="emailData">
                         <input type="email" 
                                placeholder="ejemplo@ejemplo.com"
                                name='loginEmail'
                                value={loginEmail}
                                onChange={onLoginInputChange}/>
                     </div>
-                    <div>
+                    <div className="passwordData">
                         <input type="password" 
                                placeholder="Contraseña"
                                name='loginPassword'
                                value={loginPassword}
                                onChange={onLoginInputChange} />
                     </div>
-                    <div>
+                    <div className="btnSubmit">
                         <input type="submit" value='Login' className="btnSubmit"/>
                     </div>
                 </form>
             </div>
 
-            <div>
+            <div className="containerRegistro">
                 <h1>Registro</h1>
                 <form onSubmit={registerSubnmit}>
                     <div>
@@ -110,7 +111,7 @@ const LoginPage = () => {
                                value={registerPassword2}
                                onChange={onRegisterInputChange} />
                     </div>
-                    <div>
+                    <div className="btnSubmit">
                         <input type='submit' value='Registrar' className="btnRegister"/>
                     </div>
                 </form>
