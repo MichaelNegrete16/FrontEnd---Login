@@ -28,13 +28,13 @@ export const useLoginStore = () => {
         }
     }
 
-    const startRegistro = async({name,email,password}) => {
+    const startRegistro = async({name,email,password,departament}) => {
         // Verificar las credenciales
         dispatch(onChecking())
         console.log(name,email,password);
         // TODO: Hacer conexion con la base de datos y mandar los datos recibidos
         try {
-            const {data} = await loginApi.post('/new',{name,email,password})
+            const {data} = await loginApi.post('/new',{name,email,password,departament})
             localStorage.setItem('token',data.token)
             dispatch(onLogin({name:data.name, uid: data.uid}))
         } catch (error) {

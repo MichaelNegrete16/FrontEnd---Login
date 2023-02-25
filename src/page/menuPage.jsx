@@ -14,11 +14,8 @@ const MenuPage = () => {
     return(
         <div>
             <h1>Pagina de inicio</h1>
-            <p>Bienvenido {user.name}</p>
-
-            
-
-            <table summary="Los grupos de música punk más famosos del Reino Unido">
+            <h2>Bienvenido {user.name}</h2>
+            <table>
 
             <thead>
                 <tr>
@@ -30,10 +27,10 @@ const MenuPage = () => {
             <tbody>
 
                 {events.map(r => (
-                        <tr >
+                        <tr key={r._id}>
                             <th scope="row">{r.name}</th>
                             <td>{r.email}</td>
-                            <td>En desarrollo...</td>
+                            <td>{r.departament}</td>
                         </tr>
                 ))}
 

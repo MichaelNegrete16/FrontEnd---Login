@@ -2,7 +2,9 @@ table {
     margin-left: 25%;
     width: 50%;
     /* border-collapse: collapse; */
-    border: 3px solid purple;
+    border-radius: 10px;
+    border: 1px solid ;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
   }
   
   thead th:nth-child(1) {
@@ -23,4 +25,20 @@ table {
   
   th, td {
     padding: 20px;
+  }
+
+  h2{
+    text-align: center;
+  }
+
+  button{
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    width: 200px;
+    margin-left: 43%;
+    margin-top: 40px;
+    background-color: blue;
+    color: white;
+    cursor: pointer;
   }

@@ -1,12 +1,13 @@
 // Hooks
-import { useEffect } from "react"
 import { useForm } from "../hooks/useform"
 import { useLoginStore } from "../hooks/useLoginStore"
 
 // Hoja de estilos
 import '../styles/loginStyles.css'
-// Alertas
+// Alertas y librerias
+import { useEffect, useState } from "react"
 import Swal from "sweetalert2"
+import Select from "react-select";
 
 // Objetos con los datos a tomar
 const loginFormField = {
@@ -18,15 +19,44 @@ const registerFormField = {
     registerName: '',
     registerEmail: '',
     registerPassword: '',
-    registerPassword2: ''
+    registerPassword2: '',
 }
 
+const option = [
+    {
+      label: "Cundinamarca",
+      value: "cundinamarca",
+    },
+    {
+      label: "Guainía",
+      value: "guainía",
+    },
+    {
+      label: "Bolivar",
+      value: "bolivar",
+    },
+    {
+      label: "Boyaca",
+      value: "boyaca",
+    },
+  ]
+
+
 const LoginPage = () => {
+
+
 
     const {startLogin,startRegistro,errorMessage} = useLoginStore()
 
     const {loginEmail, loginPassword, onInputChange: onLoginInputChange}  = useForm(loginFormField)
     const {registerName, registerEmail, registerPassword, registerPassword2, onInputChange: onRegisterInputChange} = useForm(registerFormField)
+
+    const [selected, setSelected] = useState();
+
+    const handleChange = (selectedOption) => {
+        setSelected(selectedOption.value);
+        // console.log(`Option selected:`, selected);
+      };
 
     const loginSubmit = e => {
         e.preventDefault()
@@ -41,9 +71,9 @@ const LoginPage = () => {
             Swal.fire('Error en la autenticacion','Las contrtaseñas deben ser iguales','error')
             return
         }
-
+        console.log(selected);
         // TODO: Mandar los datos a la base de datos del registro
-        startRegistro({name:registerName, email:registerEmail, password:registerPassword})
+        startRegistro({name:registerName, email:registerEmail, password:registerPassword, departament:selected})
     }
 
     // TODO: Hacer una autenticacion
@@ -111,6 +141,11 @@ const LoginPage = () => {
                                value={registerPassword2}
                                onChange={onRegisterInputChange} />
                     </div>
+
+                    <div className="select">
+                        <Select options={option} onChange={handleChange} autoFocus={true}></Select>
+                    </div>
+
                     <div className="btnSubmit">
                         <input type='submit' value='Registrar' className="btnRegister"/>
                     </div>
