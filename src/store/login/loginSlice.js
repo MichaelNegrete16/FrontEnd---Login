@@ -5,6 +5,7 @@ export const loginSlice = createSlice({
     initialState: {
         // El status para saber si esta o no autenticada || checking
         status: 'not-authenticated',
+        events:[],
         user: {},
         errorMessage: undefined
     },
@@ -22,12 +23,24 @@ export const loginSlice = createSlice({
         onLogout: (state,{payload}) => {
             state.status = 'not-authenticated'
             state.user = {}
+            state.events = []
             state.errorMessage = payload
         },
         onClearError: state => {
             state.errorMessage = undefined
-        }
+        },
+
+        // Cargar eventos de la base de datos
+        onLoadEvents : (state, {payload = []}) => {
+            // state.events = payload
+            payload.forEach(event => {
+                const exist = state.events.some(dbEvent => dbEvent._id === event._id)
+                if(!exist){
+                  state.events.push(event)
+                }
+            })
+       },
     }
 })
 
-export const {onChecking,onLogin,onLogout,onClearError} = loginSlice.actions
+export const {onChecking,onLogin,onLogout,onClearError,onLoadEvents} = loginSlice.actions

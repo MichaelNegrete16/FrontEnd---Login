@@ -1,11 +1,13 @@
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import loginApi from "../api/loginApi";
-import { onChecking,onLogin,onLogout,onClearError } from "../store/login/loginSlice";
+import { onChecking,onLogin,onLogout,onClearError,onLoadEvents } from "../store/login/loginSlice";
+
 
 export const useLoginStore = () => {
 
     // Seleccionar los datos del state
-    const {status,user,errorMessage} = useSelector(state => state.login)
+    const {events,status,user,errorMessage} = useSelector(state => state.login)
     const dispatch = useDispatch()
 
     const startLogin = async ({email,password}) => {
@@ -66,9 +68,20 @@ export const useLoginStore = () => {
         dispatch(onLogout())
     }
 
+    // Obtener Los datos de los usuarios
+    const showValues = async () => {
+        try {
+            const {data} = await loginApi.get('/')
+            dispatch(onLoadEvents(data.msg))
+        } catch (error) {
+            
+        }
+    }
+
 
     return {
         // Propiedades
+        events,
         status,
         user,
         errorMessage,
@@ -76,7 +89,8 @@ export const useLoginStore = () => {
         startLogin,
         startRegistro,
         startLogout,
-        checkAuthToken
+        checkAuthToken,
+        showValues
     }
 
 }
